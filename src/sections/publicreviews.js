@@ -13,7 +13,7 @@ class Publicreviews extends Component {
         style={{
           ...Styles.highZ,
           ...Styles.spacingVertical,
-          ...Styles.blueBG,
+          ...Styles.whiteBG,
           padding: "20% 5%",
         }}
         direction="column"
@@ -24,9 +24,10 @@ class Publicreviews extends Component {
         <Grid item style={{ ...Styles.marginBottom }}>
           <Typography
             variant="h2"
-            style={{ ...Styles.colorYellow, ...Styles.centerTxt }}
+            style={{...Styles.centerTxt }}
           >
-            Like they say - client is the king
+            Like they say - <span style={{  ...Styles.colorPrimary,...Styles.centerTxt }}> Client is the King
+          </span>
           </Typography>
           <Typography
             variant="subtitle1"
@@ -52,28 +53,28 @@ class Publicreviews extends Component {
             }}
           >
             <Typography
-              variant="h1"
-              style={{ ...Styles.colorWhite, ...Styles.centerTxt }}
+              variant="h2"
+              style={{ ...Styles.colorPrimary, ...Styles.centerTxt }}
             >
               4.8/5
             </Typography>
             <Typography
               variant="subtitle2"
-              style={{ ...Styles.colorWhite, ...Styles.centerTxt }}
+              style={{...Styles.colorPrimary,...Styles.centerTxt }}
             >
               Rating on Facebook
             </Typography>
           </Grid>
           <Grid item xs={6}>
             <Typography
-              variant="h1"
-              style={{ ...Styles.colorWhite, ...Styles.centerTxt }}
+              variant="h2"
+              style={{ ...Styles.colorPrimary, ...Styles.centerTxt }}
             >
               4.8/5
             </Typography>
             <Typography
               variant="subtitle2"
-              style={{ ...Styles.colorWhite, ...Styles.centerTxt }}
+              style={{ ...Styles.colorPrimary, ...Styles.centerTxt }}
             >
               Rating on Google
             </Typography>
@@ -95,7 +96,7 @@ class Publicreviews extends Component {
           </Grid>
           <Grid item className="speech-bubble">
             <iframe
-              src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fdeepsee.gupta%2Fposts%2F2343576852336900&width=500"
+              src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Faashu.luthra/posts/10159555067681995&width=500"
               width="300"
               height="250"
               style={{ border: "none", overflow: "hidden" }}
@@ -108,7 +109,7 @@ class Publicreviews extends Component {
           </Grid>
           <Grid item className="speech-bubble">
             <iframe
-              src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fharshrmb%2Fposts%2F1937028956346033&width=500"
+              src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fabhishek.maurya.98/posts/10213407272911439&width=500"
               width="300"
               height="220"
               style={{ border: "none", overflow: "hidden" }}

@@ -18,7 +18,8 @@ class Banner extends Component {
           style={{
             ...Styles.banner,
             ...Styles.padding5,
-            background: `linear-gradient(0deg, rgba(0,0,0,0.3981967787114846) 21%, rgba(0,0,0,0.4) 66%), url('./img/Website_Image.jpg')`,
+            //ANVbackground: `linear-gradient(0deg, rgba(0,0,0,0.3981967787114846) 21%, rgba(0,0,0,0.4) 66%), url('./img/Website_Image.jpg')`,
+            background: `url('./img/Website_Image.jpg')`,
             backgroundPosition: "left",
             backgroundSize: "cover",
           }}
@@ -71,6 +72,8 @@ class Banner extends Component {
             style={{
               ...Styles.translucentContainer,
               ...Styles.feildRadius,
+              padding: "20px",
+              background: "rgb(101 97 141 / 70%)",
             }}
           >
             <Grid item>
