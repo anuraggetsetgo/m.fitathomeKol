@@ -7,13 +7,15 @@ import {
   getURL,
   updateLoc,
   retrievePath,
+  colors,
 } from "./services";
-import { Typography, Button, Fade } from "@material-ui/core";
+import { Typography, Button, Fade, Table, TableCell, TableBody, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
 import Styles from "./app-style";
 import PreloadImage from "./helpers/preloadimg";
 import GetDiscount from "./sections/getdiscount";
-let baseurl = "https://getsetgo.fitness";
+import { Link } from "react-router-dom";
 
+let baseurl = "https://getsetgo.fitness";
 class Package extends Component {
   constructor(props) {
     super(props);
@@ -33,6 +35,7 @@ class Package extends Component {
       products: null,
     };
   }
+
   createOrder(product, index) {
     let userDetails = JSON.parse(get("userDetails"));
     console.log("index", index);
@@ -42,8 +45,7 @@ class Package extends Component {
     this.setState({ bored: false });
     if (!userDetails) this.setState({ userData: false });
     else {
-      //campagin create order call
-      //callAPI(getURL('create_order'),'post',(data)=>{this.orderCreated(data)},(err)=>{this.errorOrderCreated(err)}, {"orderNote":`KOL ${index+1} people`,"package_id":package_id,"customer_name":userDetails.name,"customer_email":userDetails.email, "customer_phone":`${userDetails.country}-${userDetails.mobile}`, "redirect_url":"http://localhost:3000"+"/thank_you"})
+      //callAPI(getURL('create_order'),'post',(data)=>{this.orderCreated(data)},(err)=>{this.errorOrderCreated(err)}, {"orderNote":`KOL ${index+1} people`,"package_id":package_id,"customer_name":userDetails.name,"customer_email":userDetails.email, "customer_phone":`${userDetails.country}-${userDetails.mobile}`, "redirect_url":baseurl+"/thank_you"})
       callAPI(
         getURL("campaign_create_order"),
         "post",
@@ -98,6 +100,27 @@ class Package extends Component {
     }, 10000);
     this.hideDetails();
   };
+  setProducts=(data)=>{  
+    console.log("DATA FETCHED!!")      
+    var services = data.data.services;
+    console.log(services);
+    //setServices(services);
+    baseurl = data.data.redirect_base_url;
+    this.setState({ products: services });
+    let row=[], fields = [];
+    let desc
+      services.map((product)=>{
+          desc = JSON.parse(product.pack_des);
+         row.push(desc); 
+         for (const key in desc) {
+          row.push(desc);
+        }
+        })
+        var uniqueRow = [...new Set(row)]; 
+        console.log("UNIQUE ROW -->>", uniqueRow);
+        this.setState({serviceInclusions:uniqueRow});
+
+  }
   getproducts = () => {
     let currency = this.state.currency;
     let campaign_id = get("campaign_id") === null ? 1 : get("campaign_id");
@@ -108,13 +131,7 @@ class Package extends Component {
     callAPI(
       "https://api.getsetgo.fitness/base_ind/API/v1/fetch_services",
       "post",
-      (data) => {
-        var services = data.data.services;
-        //console.log(services);
-        //setServices(services);
-        baseurl = data.data.redirect_base_url;
-        this.setState({ products: services });
-      },
+      (data) => {this.setProducts(data)},
       (err) => {
         console.log(err);
       },
@@ -124,9 +141,37 @@ class Package extends Component {
       }
     );
   };
+  returnCurrencySymbol = (currency)=>{
+    switch (currency){
+      case 'INR':
+        return "₹";
+        case 'AED':
+          return 'aed';
+        default: 
+        return '$';
+    }
+  }
+  renderVal=(text)=>{
+    var element;
+    switch (text) {
+      case 'Yes':
+          return <span className="material-icons" style={{color: 'green', fontSize: '1.5rem', fontWeight: 'bold'}}>add</span>
+        break;
+        case 'No':
+          return <span className="material-icons" style={{color: 'red', fontSize: '1.5rem', fontWeight: 'bold'}}>remove</span>
+        break;
+      default:
+        return <Typography variant="body2">{text}</Typography>
+        break;
+      
+    }
+    return element;
+
+  }
   componentDidMount() {
     this.getproducts();
   }
+
   render() {
     let {
       amount,
@@ -138,6 +183,7 @@ class Package extends Component {
       discountDetails,
       discountActivated,
       activatingDiscount,
+      serviceInclusions,
     } = this.state;
     let desc = [
       "Stranded alone at home? Well, no more. Join thousands of others and turn it into a great at-home-staycation for you!",
@@ -154,12 +200,13 @@ class Package extends Component {
       `${retrievePath()}happyCouple.jpg`,
       `${retrievePath()}happyFamily.jpg`,
     ];
+    console.log("PRODUCTS -->>", serviceInclusions)
     return (
       <Grid
         container
         style={{
           minHeight: `${docHt() - 100}px`,
-          paddingTop: "70px",
+          paddingTop: Styles.spacing(10),
           ...Styles.blueBG,
         }}
         direction="column"
@@ -172,17 +219,13 @@ class Package extends Component {
               Uh oh, we don't have your user details. Please go back to home and
               fill your details
             </Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => {
-                this.gotoHome();
-              }}
-            >
-              <Typography variant="subtitle1" style={Styles.colorWhite}>
-                Click here to go to home
-              </Typography>
-            </Button>
+            <Link to="/">
+              <Button variant="contained" color="primary">
+                <Typography variant="subtitle1" style={Styles.colorWhite}>
+                  Click here to go to home
+                </Typography>
+              </Button>
+            </Link>
           </Grid>
         )}
         {userData && (
@@ -191,12 +234,20 @@ class Package extends Component {
               <Typography
                 variant="h2"
                 style={{
-                  ...Styles.padding5,
                   ...Styles.colorWhite,
-                  ...Styles.marginTop,
+                  ...Styles.centerTxt,
                 }}
               >
                 Get started today! Your health is worth it
+              </Typography>
+              <Typography
+                variant="subtitle2"
+                style={{
+                  ...Styles.colorWhite,
+                  ...Styles.centerTxt,
+                }}
+              >
+                All our plans are meticulously crafted to ensure you adopt a healthy lifestyle and enjoy freedom with moderation. 
               </Typography>
             </Grid>
             {!products && (
@@ -211,115 +262,148 @@ class Package extends Component {
                 Loading services. Please wait ...
               </Grid>
             )}
+
             {products && (
               <Grid
                 item
                 container
                 alignItems="center"
-                justify="space-evenly"
-                style={{
-                  ...Styles.marginTop,
-                  ...Styles.blueBG,
-                  ...Styles.padding5,
-                }}
-                direction="column"
+                justify="center"
+                //style={{ ...Styles.marginTop }}
               >
                 {
-                  //Object.keys(this.state.amount).map((key, indx)=>{
-                  products &&
-                    products.map((product, index) => {
-                      return (
-                        <Grid
-                          item
-                          style={{
-                            ...Styles.marginBottom,
-                            ...Styles.blueBG,
-                            ...Styles.padding5,
-                          }}
-                          key={index}
-                        >
-                          {bored && (
-                            <Fade in={bored}>
-                              <PreloadImage
-                                src={imgs[index]}
-                                alt="Simple, macro-calculated recipes"
-                                style={{ width: "100%", minHeight: "100px" }}
-                              />
-                            </Fade>
-                          )}
-                          {!bored && (
-                            <Fade in={!bored}>
-                              <PreloadImage
-                                src={imgsHappy[index]}
-                                alt="Simple, macro-calculated recipes"
-                                style={{ width: "100%", minHeight: "100px" }}
-                              />
-                            </Fade>
-                          )}
-                          <Typography
-                            style={{ ...Styles.colorGrey, ...Styles.marginTop }}
-                          >
-                            (Cost: {currency} {product.pack_price} per person)
-                          </Typography>
-                          {/* <Typography variant="subtitle1" style={{...Styles.colorWhite, ...Styles.marginTop}}>{indx+1} {indx>0?'People':'Person'}</Typography>
-                                            <Typography style={{...Styles.colorGrey, ...Styles.marginTop}}>{currency} {discountActivated?offerAmount[key]*(indx+1):amount[key]*(indx+1)} per month</Typography>
-                                            {!(activatingDiscount || discountActivated) && <Typography style={{...Styles.colorPrimary, ...{cursor: 'pointer'}}} onClick={this.showDiscount}>Tap here for discounted price: {currency} {offerAmount[key]*(indx+1)} per month</Typography>}
-                                            {activatingDiscount && !discountActivated && <Typography style={{...Styles.colorPrimary, ...{cursor: 'pointer'}}} >Validating your post. Please wait ...</Typography>}
-                                            {!activatingDiscount && discountActivated && <Typography style={{...Styles.colorPrimary, ...{cursor: 'pointer'}}} >Discount activated!</Typography>}
-                                            <Typography style={{...Styles.colorGrey}}>(Effective cost: {currency} {offerAmount[key]} per person)</Typography> */}
-                          <Typography
-                            variant="subtitle2"
-                            style={{
-                              ...Styles.colorWhite,
-                              ...Styles.marginTop,
-                              ...{ minHeight: "120px" },
-                            }}
-                          >
-                            {desc[index]}
-                          </Typography>
-                          <Grid item container>
-                            <Styles.ColorButton
-                              variant="contained"
-                              color="primary"
-                              onClick={() => this.createOrder(product, index)}
-                              disabled={!bored}
-                            >
-                              <Typography
-                                variant="subtitle1"
-                                style={Styles.colorWhite}
+                  //Object.keys(this.state.amount).map((key, indx)=>
+                  // products &&
+                  //   products.map((product, index) => {
+                  //     return (
+                        <TableContainer component={Paper} style={{width: '50%', padding: '1vw', borderRadius: '20px',minWidth:'94vw',marginBottom:"10vh"}}>
+      <Table size="small" aria-label="a dense table">
+        <TableHead>
+          <TableRow>
+            <TableCell><div style={{background: colors.yellow, borderRadius: '20px', padding: '12px'}}><Typography variant="subtitle2">Plans</Typography></div></TableCell>
+            {products.map(el=>(
+              <TableCell align="center"><div style={{background: colors.primary, borderRadius: '20px', padding: '14px', color: colors.secondary}}>
+                <Typography variant="h6">{el.service_caption}</Typography></div></TableCell>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {/* {products.map((product) => (
+            <TableRow key={product.name}>
+              <TableCell component="th" scope="row">
+                {product.name}
+              </TableCell>
+              <TableCell align="right">{product.calories}</TableCell>
+              <TableCell align="right">{product.fat}</TableCell>
+              <TableCell align="right">{row.carbs}</TableCell>
+              <TableCell align="right">{row.protein}</TableCell>
+            </TableRow>
+          ))} */}
+          {serviceInclusions && Object.keys(serviceInclusions[0]).map((key, indx)=>(
+            <TableRow key={`${key}-${indx}`}>
+              <TableCell component="td" scope="row"><Typography variant="body2">{key}</Typography></TableCell>
+              {serviceInclusions.map(el=>(
+                <TableCell align="center" component="td" scope="row">
+                  <Typography variant="body2">{this.renderVal(el[key])}</Typography>
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+          <TableRow>
+          <TableCell align="left" component="td" scope="row">&nbsp;</TableCell>
+          {products.map(el=>(<TableCell align="center" component="td" scope="row"><Grid container direction="column">
+            <Grid item><Typography variant="body1">{this.returnCurrencySymbol(el.pack_currency)} {el.pack_price}</Typography></Grid><Grid item><Typography variant="body2" style={{color: colors.grey}}>{"12 weeks"}</Typography></Grid></Grid></TableCell>))}
+          </TableRow>
+          <TableRow>
+          <TableCell align="left" component="td" scope="row"></TableCell>
+          {products.map((product, indx)=>(
+            <TableCell align="center" component="td" scope="row">
+            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={() => this.createOrder(product, indx)}
+                                disabled={!bored}
+                                style={{width: '100%'}}
                               >
-                                {!bored ? "Please wait ..." : "Buy now"}
-                              </Typography>
-                            </Styles.ColorButton>
-                          </Grid>
-                        </Grid>
-                      );
-                    })
+                                <Typography
+                                  variant="body2"
+                                  style={{...Styles.colorWhite}}
+                                >
+                                  {!bored ? "Please wait ..." : "Sign up"}
+                                </Typography>
+                              </Button>
+            </TableCell>
+          ))}
+          </TableRow>
+        </TableBody>
+      </Table>
+    </TableContainer>
+                        // <Grid
+                        //   item
+                        //   xs={4}
+                        //   style={{
+                        //     ...Styles.centerTxt,
+                        //     ...{ padding: "0 50px" },
+                        //     boxShadow: '0px 0px 19px -3px rgba(0,0,0,0.36)',
+                        //     background: 'rgb(255, 255, 255)',
+                        //     border :'5px soild'
+                        //   }}
+                        //   key={index}
+                        // >
+                            
+                        //       <PreloadImage
+                        //         src={imgs[index]}
+                        //         alt="Diabetes special plan"
+                        //         style={{ width: "100%", minHeight: "100px" }}
+                        //       />
+                            
+                          
+                        //   <Typography style={{ ...Styles.colorGrey }}>
+                        //     (Cost: {currency} {product.pack_price} per person)
+                        //   </Typography>
+                        //   <Typography
+                        //     variant="subtitle2"
+                        //     style={{
+                        //       ...Styles.colorPrimary,
+                        //       ...Styles.marginTop,
+                              
+                        //     }}
+                        //   >
+                        //     <strong>{product.service_caption}</strong>
+                        //     {/* //product.pack_des} */}
+                        //   </Typography>
+                        //   <Divider style={{height:'4px'}} />
+                        //   {serviceInclusions && serviceInclusions.map((feature,index)=>(<Grid>
+                        //     <Typography variant="h6" style={{...Styles.colorPrimary}}>
+                        //       Feature: {feature}
+                        //       </Typography>
+                        //   <Typography variant="subtitle2">{this.setIcons(JSON.parse(product.pack_des)[feature])}</Typography>
+                        //   </Grid>
+                        //   ))}
+                        //   <Grid item>
+                        //     <Styles.ColorButton
+                        //       variant="contained"
+                        //       color="primary"
+                        //       onClick={() => this.createOrder(product, index)}
+                        //       disabled={!bored}
+                        //     >
+                        //       <Typography
+                        //         variant="subtitle1"
+                        //         style={Styles.colorWhite}
+                        //       >
+                        //         {!bored ? "Please wait ..." : "Buy now"}
+                        //       </Typography>
+                        //     </Styles.ColorButton>
+                        //   </Grid>
+                        // </Grid>
+                      // );
+                    // })
                 }
-
-                {/* <Grid item xs={4} style={{...Styles.centerTxt, ...{borderRight: '1px solid #fff', padding: '0 50px'}}}>
-                                <PreloadImage src={boredCouple} alt="Simple, macro-calculated recipes" style={{width: '100%'}}/>
-                                <Typography variant="subtitle1" style={{...Styles.colorWhite, ...Styles.marginTop}}>2 People</Typography>
-                                <Typography style={{...Styles.colorGrey, ...Styles.marginTop}}>₹ 3000 per person per month</Typography>
-                                <Typography variant="subtitle2" style={{...Styles.colorWhite, ...Styles.marginTop, ...{minHeight: '120px'}}}></Typography>
-                                <Grid item container>
-                                    <Button variant="contained" color="primary">
-                                        <Typography variant="subtitle1" style={Styles.colorWhite}>Buy now</Typography>
-                                    </Button>
-                                </Grid item container>
-                            </Grid>
-                            <Grid item xs={4} style={{...Styles.centerTxt, ...{padding: '0 50px'}}}>
-                                <PreloadImage src={boredFamily} alt="Simple, macro-calculated recipes" style={{width: '100%'}}/>
-                                <Typography variant="subtitle1" style={{...Styles.colorWhite, ...Styles.marginTop}}>4 People</Typography>
-                                <Typography style={{...Styles.colorGrey, ...Styles.marginTop}}>₹ 2500 per person per month</Typography>
-                                <Typography variant="subtitle2" style={{...Styles.colorWhite, ...Styles.marginTop, ...{minHeight: '120px'}}}></Typography>
-                                <Grid item container>
-                                    <Button variant="contained" color="primary">
-                                        <Typography variant="subtitle1" style={Styles.colorWhite}>Buy now</Typography>
-                                    </Button>
-                                </Grid item container>
-                            </Grid> */}
-              </Grid>
+               {/* {products&&(
+                  <Grid xs={8}><ProductTable products={products}/></Grid>
+              )
+  } */}
+  </Grid>
             )}
             <GetDiscount
               discountDetails={discountDetails}

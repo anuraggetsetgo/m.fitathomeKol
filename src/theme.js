@@ -168,6 +168,13 @@ const theme = createMuiTheme({
     MuiList: {
       root: { background: "none" },
     },
+    MuiTableCell:{
+      sizeSmall:{
+        padding:"2px 4px 2px 4px",
+        '&:last-child':{paddingRight:"5px"}
+      },
+    },
+
   },
   props: {
     // Name of the component ⚛️
