@@ -170,7 +170,7 @@ const theme = createMuiTheme({
     },
     MuiTableCell:{
       sizeSmall:{
-        padding:"2px 4px 2px 4px",
+        padding:"6px 4px 6px 4px",
         '&:last-child':{paddingRight:"5px"}
       },
     },

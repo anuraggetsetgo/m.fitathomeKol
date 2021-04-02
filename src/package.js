@@ -9,7 +9,13 @@ import {
   retrievePath,
   colors,
 } from "./services";
-import { Typography, Button, Fade, Table, TableCell, TableBody, TableContainer, TableHead, TableRow, Paper } from "@material-ui/core";
+import { Typography, Button, Fade, Table, TableCell, TableBody, TableContainer, TableHead, TableRow, Paper} from "@material-ui/core";
+
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
 import Styles from "./app-style";
 import PreloadImage from "./helpers/preloadimg";
 import GetDiscount from "./sections/getdiscount";
@@ -205,7 +211,7 @@ class Package extends Component {
       <Grid
         container
         style={{
-          minHeight: `${docHt() - 100}px`,
+          minHeight: '94vh',//`${docHt() - 50}px`,
           paddingTop: Styles.spacing(10),
           ...Styles.blueBG,
         }}
@@ -214,7 +220,7 @@ class Package extends Component {
         justify="space-evenly"
       >
         {!userData && (
-          <Grid item style={{ padding: "0 50px", textAlign: "center" }}>
+          <Grid item style={{ padding: "0 50px", textAlign: "center" ,marginBottom: '20vh'}}>
             <Typography variant="h2" style={Styles.colorWhite}>
               Uh oh, we don't have your user details. Please go back to home and
               fill your details
@@ -264,80 +270,56 @@ class Package extends Component {
             )}
 
             {products && (
-              <Grid
-                item
-                container
-                alignItems="center"
-                justify="center"
-                //style={{ ...Styles.marginTop }}
-              >
-                {
-                  //Object.keys(this.state.amount).map((key, indx)=>
-                  // products &&
-                  //   products.map((product, index) => {
-                  //     return (
-                        <TableContainer component={Paper} style={{width: '50%', padding: '1vw', borderRadius: '20px',minWidth:'94vw',marginBottom:"10vh"}}>
-      <Table size="small" aria-label="a dense table">
-        <TableHead>
-          <TableRow>
-            <TableCell><div style={{background: colors.yellow, borderRadius: '20px', padding: '12px'}}><Typography variant="subtitle2">Plans</Typography></div></TableCell>
-            {products.map(el=>(
-              <TableCell align="center"><div style={{background: colors.primary, borderRadius: '20px', padding: '14px', color: colors.secondary}}>
-                <Typography variant="h6">{el.service_caption}</Typography></div></TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {/* {products.map((product) => (
-            <TableRow key={product.name}>
-              <TableCell component="th" scope="row">
-                {product.name}
-              </TableCell>
-              <TableCell align="right">{product.calories}</TableCell>
-              <TableCell align="right">{product.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-            </TableRow>
-          ))} */}
-          {serviceInclusions && Object.keys(serviceInclusions[0]).map((key, indx)=>(
-            <TableRow key={`${key}-${indx}`}>
-              <TableCell component="td" scope="row"><Typography variant="body2">{key}</Typography></TableCell>
-              {serviceInclusions.map(el=>(
-                <TableCell align="center" component="td" scope="row">
-                  <Typography variant="body2">{this.renderVal(el[key])}</Typography>
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
-          <TableRow>
-          <TableCell align="left" component="td" scope="row">&nbsp;</TableCell>
-          {products.map(el=>(<TableCell align="center" component="td" scope="row"><Grid container direction="column">
-            <Grid item><Typography variant="body1">{this.returnCurrencySymbol(el.pack_currency)} {el.pack_price}</Typography></Grid><Grid item><Typography variant="body2" style={{color: colors.grey}}>{"12 weeks"}</Typography></Grid></Grid></TableCell>))}
-          </TableRow>
-          <TableRow>
-          <TableCell align="left" component="td" scope="row"></TableCell>
-          {products.map((product, indx)=>(
-            <TableCell align="center" component="td" scope="row">
-            <Button
-                                variant="contained"
-                                color="primary"
-                                onClick={() => this.createOrder(product, indx)}
-                                disabled={!bored}
-                                style={{width: '100%'}}
-                              >
-                                <Typography
-                                  variant="body2"
-                                  style={{...Styles.colorWhite}}
-                                >
-                                  {!bored ? "Please wait ..." : "Sign up"}
-                                </Typography>
-                              </Button>
-            </TableCell>
-          ))}
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+              <Grid container alignItems="center" justify="center" style={{ ...Styles.marginBottom,overflow:'scroll' }}>
+                { <React.Fragment>  
+                    {products.map((el,indx)=>(
+                      <Grid style={Styles.marginBottom}>
+                       <Accordion  style={{borderRadius: '20px',width:'90vw'}}>
+                    <div style={{background: colors.primary, borderRadius: '20px', color: colors.secondary}}  >
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}aria-controls="panel1a-content" id="panel1a-header">
+                      <Typography >{el.service_caption}</Typography>
+                    </AccordionSummary></div>
+                    <AccordionDetails>
+                      <Grid container direction='column' justify='center' alignItems="center" spacing={2}>
+                        <Grid item>
+                    <TableContainer component={Paper} style={{ padding: '1vw', borderRadius: '20px'}}>
+                        <Table size="small" aria-label="a dense table">
+                        {serviceInclusions && Object.keys(serviceInclusions[0]).map((key, indx)=>(
+                            <TableRow key={`${key}-${indx}`}>
+                            <TableCell component="td" scope="row">
+                            <Typography variant="body2">{key}</Typography>
+                            </TableCell>
+                            <TableCell align="center" component="td" scope="row">
+                              <Typography variant="body2">{this.renderVal(JSON.parse(el.pack_des)[key])}</Typography>
+                            </TableCell>              
+                              </TableRow>
+                          ))}
+              <TableRow >
+                <TableCell></TableCell>
+                <TableCell>
+                  <Grid container direction="column" alignItems='center' justify='flex-end'>
+                    <Grid item>
+                      <Typography variant="body1">{this.returnCurrencySymbol(el.pack_currency)} {el.pack_price}</Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="body2" style={{color: colors.grey}}>{"12 weeks"}</Typography>
+                      </Grid>
+                      </Grid>
+                      </TableCell>
+              </TableRow>
+              </Table>
+            </TableContainer></Grid>
+            
+            <Button variant="contained" color="primary" style={{width:'60vw'}}onClick={() => this.createOrder(el, indx)}disabled={!bored}>
+                                      <Typography variant="body2" style={{...Styles.colorWhite}}>
+                                        {!bored ? "Please wait ..." : "Sign up"}
+                                      </Typography>
+                    </Button></Grid>
+            </AccordionDetails>
+            </Accordion></Grid>))}
+
+
+       </React.Fragment>
                         // <Grid
                         //   item
                         //   xs={4}
