@@ -38,16 +38,16 @@ class Banner extends Component {
             container
             alignItems="center"
             justify="center"
-            style={{ ...Styles.translucentContainer }}
+            style={{ ...Styles.translucentContainer,marginTop:'15%',background:'rgb(6 4 29 / 20%)' }}
           >
-            <Typography variant="h1" style={{ ...Styles.colorWhite }}>
+            <Typography variant="h2" style={{ ...Styles.colorWhite }}>
               {customTxt.bannerPageTxt.mainHeading}
             </Typography>
             <Typography
               variant="subtitle2"
               style={{ ...Styles.colorWhite, ...Styles.marginTop }}
             >
-              {customTxt.bannerPageTxt.subHeading}
+            <strong>  {customTxt.bannerPageTxt.subHeading}</strong>
             </Typography>
           </Grid>
           <Arrow />

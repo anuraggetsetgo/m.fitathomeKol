@@ -14,11 +14,11 @@ export default function () {
         style={{
           ...Styles.highZ,
           position: "absolute",
-          bottom: "70px",
+          bottom: "7vh",
           textAlign: "center",
         }}
       >
-        {" "}
+        {/* {" "}
         <Grid item>
           <Button
             onClick={Styles.handleScroll}
@@ -27,7 +27,7 @@ export default function () {
             Scroll Down
           </Button>
           <br></br>
-        </Grid>
+        </Grid> */}
         <Grid item>
           <Button
             onClick={Styles.handleScroll}

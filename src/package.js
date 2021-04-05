@@ -242,15 +242,17 @@ class Package extends Component {
                 style={{
                   ...Styles.colorWhite,
                   ...Styles.centerTxt,
+                  fontSize:'36px'
                 }}
               >
-                Get started today! Your health is worth it
+                Get started today! Your health is worth it.
               </Typography>
               <Typography
                 variant="subtitle2"
                 style={{
                   ...Styles.colorWhite,
                   ...Styles.centerTxt,
+                  ...Styles.marginBottom,
                 }}
               >
                 All our plans are meticulously crafted to ensure you adopt a healthy lifestyle and enjoy freedom with moderation. 
@@ -299,7 +301,7 @@ class Package extends Component {
                 <TableCell>
                   <Grid container direction="column" alignItems='center' justify='flex-end'>
                     <Grid item>
-                      <Typography variant="body1">{this.returnCurrencySymbol(el.pack_currency)} {el.pack_price}</Typography>
+                      <Typography variant="body1" style={{fontSize: '1.1rem'}}>{this.returnCurrencySymbol(el.pack_currency)} {el.pack_price}</Typography>
                     </Grid>
                     <Grid item>
                       <Typography variant="body2" style={{color: colors.grey}}>{"12 weeks"}</Typography>
@@ -310,11 +312,11 @@ class Package extends Component {
               </Table>
             </TableContainer></Grid>
             
-            <Button variant="contained" color="primary" style={{width:'60vw'}}onClick={() => this.createOrder(el, indx)}disabled={!bored}>
-                                      <Typography variant="body2" style={{...Styles.colorWhite}}>
-                                        {!bored ? "Please wait ..." : "Sign up"}
+            <Styles.ColorButton style={Styles.deafultButton} variant="contained" color="primary" style={{width:'40vw'}}onClick={() => this.createOrder(el, indx)}disabled={!bored}>
+                                      <Typography variant="subtitle2" style={Styles.colorBlue}>
+                                        {!bored ? "Please wait ..." : "Sign Up"}
                                       </Typography>
-                    </Button></Grid>
+                    </Styles.ColorButton></Grid>
             </AccordionDetails>
             </Accordion></Grid>))}
 

@@ -27,7 +27,7 @@ class Header extends Component {
         </Grid> */}
         <Grid item>
             <a href="https://getsetgo.fitness" rel="noopener noreferrer" target="_blank">
-              <PreloadImage src={Logo} alt='GetSetGo Fitness Diwali offer' style={{ width: "100px", marginRight:'10px' }}/>
+              <PreloadImage src={Logo} alt='GetSetGo Fitness Diwali offer' style={{ width: "80px",paddingTop:'2px' }}/>
               </a>
           </Grid>
       </Grid>

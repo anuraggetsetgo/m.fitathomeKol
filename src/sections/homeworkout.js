@@ -53,7 +53,7 @@ class Homeworkout extends Component {
           </Typography>
           <Typography
             variant="h5"
-            style={{ ...Styles.colorGrey, ...Styles.italicTxt }}
+            style={{ ...Styles.colorWhite, ...Styles.italicTxt }}
           >
             {customTxt.homeworkoutPageTxt.subHeading[0]} <br></br>
             <br></br>

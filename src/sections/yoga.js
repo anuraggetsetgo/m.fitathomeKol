@@ -43,7 +43,7 @@ class Yoga extends Component {
           </Typography>
           <Typography
             variant="h5"
-            style={{ ...Styles.colorGrey, ...Styles.italicTxt }}
+            style={{ ...Styles.colorWhite, ...Styles.italicTxt }}
           >
             <ul>
               {customTxt.yogaPageTxt.contentList.map((val) => {

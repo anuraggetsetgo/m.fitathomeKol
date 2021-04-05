@@ -50,6 +50,9 @@ export default {
   colorBlack: {
     color: "black",
   },
+  colorBlue: {
+    color: colors.blue,
+  },
   colorTransparent: {
     background: colors.transparent,
   },

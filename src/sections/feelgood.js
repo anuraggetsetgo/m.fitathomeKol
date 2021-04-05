@@ -49,7 +49,7 @@ class Feelgood extends Component {
           <Grid item container direction="column">
             <Typography
               variant="h4"
-              style={{ ...Styles.colorGrey, ...Styles.leftTxt }}
+              style={{ ...Styles.leftTxt,color:'rgb(170 170 190)' }}
             >
               <br></br>
               <span style={{ ...Styles.colorGrey, ...Styles.italicTxt }}>

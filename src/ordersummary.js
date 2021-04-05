@@ -150,7 +150,7 @@ class Ordersummary extends Component {
               variant="subtitle1"
               style={{ ...Styles.colorWhite, ...Styles.marginBottom }}
             >
-              ... And we're done! Your registration is complete
+              Your registration is complete!!!
             </Typography>
             <Typography variant="subtitle2" style={{ ...Styles.colorWhite }}>
               Congratulations {name.split(" ")[0]}! There has been a small
@@ -159,7 +159,7 @@ class Ordersummary extends Component {
               registration, our representatives will get in touch with you
               within 2 working days. Feel free to drop us an email in case you
               have any queries:{" "}
-              <a href="mailto: info@getsetgo.fitness">info@getsetgo.fitness</a>
+              <a href="mailto: info@getsetgo.fitness" style={Styles.colorYellow}>info@getsetgo.fitness</a>
             </Typography>
           </Grid>
         )}
@@ -176,13 +176,13 @@ class Ordersummary extends Component {
               variant="subtitle1"
               style={{ ...Styles.colorWhite, ...Styles.marginBottom }}
             >
-              ... And we're done! Your registration is complete
+             Your registration is complete!!!
             </Typography>
             <Typography variant="subtitle2" style={{ ...Styles.colorWhite }}>
               Congratulations {name.split(" ")[0]}! Our representatives will get
               in touch with you within 2 working days. Feel free to drop us an
               email in case you have any queries:{" "}
-              <a href="mailto: info@getsetgo.fitness">info@getsetgo.fitness</a>
+              <a href="mailto: info@getsetgo.fitness" style={Styles.colorYellow}>info@getsetgo.fitness</a>
             </Typography>
           </Grid>
         )}
