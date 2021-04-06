@@ -14,7 +14,7 @@ class Feelgood extends Component {
           ...Styles.section01,
           ...Styles.highZ,
           ...Styles.blueBG,
-          padding: "20% 5%",
+          padding: "10% 5%",
         }}
         className="top"
       >
@@ -33,7 +33,7 @@ class Feelgood extends Component {
           <Grid item>
             <Typography
               variant="h3"
-              style={{ ...Styles.colorBlack, marginBottom: Styles.spacing(3) }}
+              style={{ ...Styles.colorBlack, marginBottom: Styles.spacing(1) }}
             >
               {customTxt.feelgoodPageTxt.mainHeading[0]}
               <span style={Styles.colorPrimary}>
@@ -52,8 +52,10 @@ class Feelgood extends Component {
               style={{ ...Styles.leftTxt,color:'rgb(170 170 190)' }}
             >
               <br></br>
-              <span style={{ ...Styles.colorGrey, ...Styles.italicTxt }}>
+              <span style={{ ...Styles.colorGrey }}>
                 {customTxt.feelgoodPageTxt.subHeading}
+                <br></br>
+                {customTxt.feelgoodPageTxt.subHeading1}
               </span>
             </Typography>
           </Grid>

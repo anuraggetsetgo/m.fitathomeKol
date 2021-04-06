@@ -12,7 +12,7 @@ class Yoga extends Component {
         style={{
           ...Styles.whiteBG,
           ...Styles.highZ,
-          padding: "20% 5%",
+          padding: "10% 5%",
         }}
         direction="column"
         alignItems="center"
@@ -43,13 +43,13 @@ class Yoga extends Component {
           </Typography>
           <Typography
             variant="h5"
-            style={{ ...Styles.colorWhite, ...Styles.italicTxt }}
+            style={{ ...Styles.colorWhite }}
           >
             <ul>
               {customTxt.yogaPageTxt.contentList.map((val) => {
                 return (
                   <>
-                    <li style={Styles.blueBG}>{val}</li>
+                    <li style={{...Styles.blueBG,listStyle:'square'}}>{val}</li>
                   </>
                 );
               })}

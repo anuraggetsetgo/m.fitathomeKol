@@ -38,13 +38,13 @@ class Banner extends Component {
             container
             alignItems="center"
             justify="center"
-            style={{ ...Styles.translucentContainer,position:'inherit',top:'31vh',background:'rgb(6 4 29 / 20%)' }}//marginTop:'40%'
+            style={{ ...Styles.translucentContainer,position:'inherit',top:'33vh',background:'rgb(6 4 29 / 30%)' }}//marginTop:'40%'
           >
-            <Typography variant="h2" style={{ ...Styles.colorWhite,lineHeight:'2.7rem' }}>
+            <Typography variant="h1" style={{ ...Styles.colorWhite }}>
               {customTxt.bannerPageTxt.mainHeading}
             </Typography>
             <Typography
-              variant="subtitle2"
+              variant="h6"
               style={{ ...Styles.colorWhite, ...Styles.marginTop }}
             >
             <strong>  {customTxt.bannerPageTxt.subHeading}</strong>
@@ -60,7 +60,7 @@ class Banner extends Component {
           justify="center"
           className="top"
           style={{
-            padding: "20% 5%",
+            padding: "10% 5%",
             ...Styles.highZ,
             ...Styles.fullHt,
             ...Styles.relative,
@@ -73,7 +73,7 @@ class Banner extends Component {
               ...Styles.translucentContainer,
               ...Styles.feildRadius,
               padding: "20px",
-              background: "rgb(101 97 141)",
+              background: "rgb(62, 78, 109)",
             }}
           >
             <Grid item>
@@ -82,7 +82,7 @@ class Banner extends Component {
                 to manage your
                 <span style={{ ...Styles.colorYellow }}> Diabetes</span> better
                 & take a step towards a
-                <span style={{ ...Styles.colorYellow }}> Better Life</span>
+                <span style={{ ...Styles.colorYellow }}> Better Life.</span>
               </Typography>
               <hr />
             </Grid>

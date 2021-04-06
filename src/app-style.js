@@ -180,7 +180,7 @@ export default {
   whiteColor: { color: colors.secondary },
   err: { color: colors.err },
   err2: { color: colors.err, marginLeft: "45px" },
-  special: { display: "inline-block", width: "5%", textAlign: "center" },
+  special: { display: "inline-block", width: "5%", textAlign: "center",marginTop:'15px' },
   countryContainer: { display: "inline-block", width: "15%" },
   mobileContainer: { display: "inline-block", width: "75%" },
   ordersummarySuccessMsg: { marginBottom: "80px", marginTop: "100px" },

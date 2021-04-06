@@ -21,7 +21,7 @@ class Homeworkout extends Component {
         style={{
           ...Styles.highZ,
           ...Styles.whiteBG,
-          padding: "20% 5%",
+          padding: "10% 5%",
         }}
         direction="column"
         alignItems="center"
@@ -53,7 +53,7 @@ class Homeworkout extends Component {
           </Typography>
           <Typography
             variant="h5"
-            style={{ ...Styles.colorWhite, ...Styles.italicTxt }}
+            style={{ ...Styles.colorWhite, }}
           >
             {customTxt.homeworkoutPageTxt.subHeading[0]} <br></br>
             <br></br>
@@ -68,14 +68,14 @@ class Homeworkout extends Component {
         <Grid
           container
           item
-          style={{ ...Styles.blackBG, ...Styles.relative }}
+          style={{ ...Styles.relative }}
           alignItems="center"
           justify="center"
           direction="column"
         >
           <Grid item>
             <iframe
-              width="250"
+              width="310"
               height="250"
               src="https://www.youtube.com/embed/FLXOHwf32K8"
               frameborder="0"

@@ -60,7 +60,7 @@ form > label {
   border-radius: 0.4em;
   display: inline-block;
   vertical-align: bottom;
-  padding: 20px;
+  padding: 10px;
   margin-bottom: 40px !important;
 }
 .speech-bubble:after {
@@ -97,9 +97,18 @@ ul > li:nth-child(even) {
 @media screen and (max-width: 360px) {
   #homePageHeading h1 {
     font-size: 1.5rem;
-    line-height: 40px;
+    line-height: 2.7rem;
   }
   #homePageHeading h6 {
-    font-size: 0.6rem;
+    font-size: 1rem;
+  }
+}
+@media screen and (min-width: 375px) {
+  #homePageHeading h1 {
+    font-size: 2rem;
+    line-height: 2.7rem;
+  }
+  #homePageHeading h6 {
+    font-size: 1.3rem;
   }
 }

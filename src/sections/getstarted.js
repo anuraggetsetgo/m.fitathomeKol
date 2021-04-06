@@ -12,7 +12,7 @@ class GetStarted extends Component {
         item
         container
         direction="column"
-        style={{ ...Styles.padding5, ...Styles.blueBG, ...Styles.highZ }}
+        style={{ ...Styles.padding5, ...Styles.blueBG, ...Styles.highZ,padding:'10% 5%' }}
         alignItems="center"
         justify="center"
         className="top"

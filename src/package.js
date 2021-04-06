@@ -161,7 +161,7 @@ class Package extends Component {
     var element;
     switch (text) {
       case 'Yes':
-          return <span className="material-icons" style={{color: 'green', fontSize: '1.5rem', fontWeight: 'bold'}}>add</span>
+          return <span className="material-icons" style={{color: 'green', fontSize: '1.5rem', fontWeight: 'bold'}}>check</span>
         break;
         case 'No':
           return <span className="material-icons" style={{color: 'red', fontSize: '1.5rem', fontWeight: 'bold'}}>remove</span>
@@ -242,7 +242,8 @@ class Package extends Component {
                 style={{
                   ...Styles.colorWhite,
                   ...Styles.centerTxt,
-                  fontSize:'36px'
+                  fontSize:'30px',
+                  ...Styles.padding5
                 }}
               >
                 Get started today! Your health is worth it.
@@ -252,10 +253,10 @@ class Package extends Component {
                 style={{
                   ...Styles.colorWhite,
                   ...Styles.centerTxt,
-                  ...Styles.marginBottom,
+                  ...Styles.padding5
                 }}
               >
-                All our plans are meticulously crafted to ensure you adopt a healthy lifestyle and enjoy freedom with moderation. 
+               <span> All our plans are meticulously crafted to ensure you adopt a healthy lifestyle and enjoy</span><br></br> freedom with moderation. 
               </Typography>
             </Grid>
             {!products && (

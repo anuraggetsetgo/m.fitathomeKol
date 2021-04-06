@@ -15,7 +15,7 @@ class Header extends Component {
       <Grid item container style={{...Styles.header}} justify="space-between">
         <Grid item >
           <Link to="/">
-            <Typography variant="subtitle1" style={Styles.colorWhite}>My Health</Typography>
+            <Typography variant="subtitle1" style={{...Styles.colorWhite,fontSize:'1.6rem'}}>My Health</Typography>
           </Link>
         </Grid>        
         {/* <Grid item >
@@ -27,7 +27,7 @@ class Header extends Component {
         </Grid> */}
         <Grid item>
             <a href="https://getsetgo.fitness" rel="noopener noreferrer" target="_blank">
-              <PreloadImage src={Logo} alt='GetSetGo Fitness' style={{ width: "80px",height:'35px',paddingTop:'2px' }}/>
+              <PreloadImage src={Logo} alt='GetSetGo Fitness' style={{ width: "80px",height:'35px' }}/>
               </a>
           </Grid>
       </Grid>

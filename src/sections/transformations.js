@@ -14,7 +14,7 @@ class Transformations extends Component {
         style={{
           ...Styles.highZ,
           ...Styles.blueBG,
-          padding: "20% 5%",
+          padding: "10% 5%",
         }}
         alignItems="flex-start"
         justify="center"
@@ -22,8 +22,8 @@ class Transformations extends Component {
       >
         <Grid item >
           <Typography variant="h2" style={{ ...Styles.colorWhite,...Styles.centerTxt }}>
-            More than <span style={Styles.colorYellow}>20000</span> people have
-            learned <span style={Styles.colorYellow}>a new way of life</span>{" "}
+            More than<br></br> <span style={Styles.colorYellow}>20000 people</span><br></br>have
+            learned a<br></br><span style={Styles.colorYellow}>new way of life</span>{" "}
             with us
           </Typography>
           <Typography

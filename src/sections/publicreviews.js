@@ -14,7 +14,7 @@ class Publicreviews extends Component {
           ...Styles.highZ,
           ...Styles.spacingVertical,
           ...Styles.whiteBG,
-          padding: "20% 5%",
+          padding: "10% 5%",
         }}
         direction="column"
         alignItems="center"
@@ -84,7 +84,7 @@ class Publicreviews extends Component {
           <Grid item className="speech-bubble">
             <iframe
               src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fcharan.panjwani.3%2Fposts%2F229774871476080&width=500"
-              width="300"
+              width="280"
               height="220"
               style={{ border: "none", overflow: "hidden" }}
               scrolling="no"
@@ -97,7 +97,7 @@ class Publicreviews extends Component {
           <Grid item className="speech-bubble">
             <iframe
               src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Faashu.luthra/posts/10159555067681995&width=500"
-              width="300"
+              width="280"
               height="310"
               style={{ border: "none", overflow: "hidden" }}
               scrolling="no"
@@ -110,7 +110,7 @@ class Publicreviews extends Component {
           <Grid item className="speech-bubble">
             <iframe
               src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fabhishek.maurya.98/posts/10213407272911439&width=500"
-              width="300"
+              width="280"
               height="220"
               style={{ border: "none", overflow: "hidden" }}
               scrolling="no"
@@ -123,8 +123,8 @@ class Publicreviews extends Component {
           <Grid item className="speech-bubble">
             <iframe
               src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Farchi.anu%2Fposts%2F1828319153947684&width=500"
-              width="300"
-              height="380"
+              width="280"
+              height="390"
               style={{ border: "none", overflow: "hidden" }}
               scrolling="no"
               frameBorder="0"
