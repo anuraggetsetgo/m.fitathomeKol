@@ -38,9 +38,9 @@ class Banner extends Component {
             container
             alignItems="center"
             justify="center"
-            style={{ ...Styles.translucentContainer,marginTop:'15%',background:'rgb(6 4 29 / 20%)' }}
+            style={{ ...Styles.translucentContainer,position:'inherit',top:'31vh',background:'rgb(6 4 29 / 20%)' }}//marginTop:'40%'
           >
-            <Typography variant="h2" style={{ ...Styles.colorWhite }}>
+            <Typography variant="h2" style={{ ...Styles.colorWhite,lineHeight:'2.7rem' }}>
               {customTxt.bannerPageTxt.mainHeading}
             </Typography>
             <Typography
@@ -73,7 +73,7 @@ class Banner extends Component {
               ...Styles.translucentContainer,
               ...Styles.feildRadius,
               padding: "20px",
-              background: "rgb(101 97 141 / 70%)",
+              background: "rgb(101 97 141)",
             }}
           >
             <Grid item>

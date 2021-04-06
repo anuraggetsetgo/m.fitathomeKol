@@ -129,7 +129,7 @@ export default {
   },
   translucentContainer: {
     background: colors.translucentBG,
-    padding: "20px",
+    padding: "15px",
   },
   fullHt: {
     minHeight: `${docHt}px`,
