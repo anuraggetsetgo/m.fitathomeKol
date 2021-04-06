@@ -205,8 +205,8 @@ class Ordersummary extends Component {
             <Typography variant="subtitle2" style={Styles.colorWhite}>
               Do not worry though. Your package is totally secure. Simply drop
               us an email at:{" "}
-              <a href="mailto: info@getsetgo.fitness">info@getsetgo.fitness</a>.
-              Remember to quote your order id in the email:{" "}
+              <a href="mailto: info@getsetgo.fitness" style={Styles.colorYellow}>info@getsetgo.fitness</a>.
+              <br></br>Remember to quote your order id in the email:{" "}
               {this.props.match.params.orderId}
             </Typography>
           </Grid>
